@@ -409,6 +409,28 @@ case "${COMMAND}" in
       logs
       echo 'Want to see the scrolling container logs? Run "./manage logs"'
     ;;
+  # ustc: start webserver, node1 and node3 on machine 1
+  start13)
+      initEnv "$@"
+      install_taa
+      docker-compose \
+        --log-level ERROR up \
+        -d webserver node1 node3
+      wait_for_ledger
+      logs
+      echo 'Want to see the scrolling container logs? Run "./manage logs"'
+    ;;
+  # ustc: start node2 and node4 on machine 2
+  start24)
+      initEnv "$@"
+      install_taa
+      docker-compose \
+        --log-level ERROR up \
+        -d node2 node4
+      wait_for_ledger
+      logs
+      echo 'Want to see the scrolling container logs? Run "./manage logs"'
+    ;;
   start-combined)
       initEnv "$@"
       install_taa
